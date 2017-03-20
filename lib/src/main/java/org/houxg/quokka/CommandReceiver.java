@@ -7,7 +7,7 @@ import android.content.IntentFilter;
 
 public class CommandReceiver extends BroadcastReceiver {
 
-    private static final String COMMAND = "COMMAND";
+    private static final String COMMAND = "command";
     private static final String ACION = "quokka.action.command";
     private Publisher<String> publisher;
 
