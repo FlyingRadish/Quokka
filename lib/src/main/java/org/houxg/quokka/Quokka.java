@@ -6,6 +6,7 @@ import android.content.Context;
 public class Quokka {
 
     private CommandReceiver receiver;
+
     private static class Singleton {
         private static Quokka INSTANCE = new Quokka();
     }
@@ -24,8 +25,8 @@ public class Quokka {
         context.registerReceiver(receiver, receiver.getIntentFiler());
     }
 
-    public void subscribeCommand(Subscriber<String> subscriber) {
-        Singleton.INSTANCE.receiver.getPublisher().addSubscriber(subscriber);
+    public static void subscribeCommand(Subscriber<String> subscriber) {
+        Singleton.INSTANCE.receiver.getPublisher().subscribe(subscriber);
     }
 
 }

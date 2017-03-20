@@ -5,13 +5,12 @@ import java.util.ArrayList;
 
 public class Publisher<T> {
     private ArrayList<Subscriber<T>> subscribers;
-    private boolean changed = false;
 
     public Publisher() {
         subscribers = new ArrayList<>();
     }
 
-    public synchronized void addSubscriber(Subscriber<T> subscriber) {
+    public synchronized void subscribe(Subscriber<T> subscriber) {
         if (subscriber == null)
             throw new NullPointerException();
         if (!subscribers.contains(subscriber)) {
@@ -19,7 +18,7 @@ public class Publisher<T> {
         }
     }
 
-    public synchronized void deleteObserver(Subscriber<T> o) {
+    public synchronized void unsubscribe(Subscriber<T> o) {
         subscribers.remove(o);
     }
 
@@ -50,11 +49,8 @@ public class Publisher<T> {
              * 2) a recently unregistered Observer will be
              *   wrongly notified when it doesn't care
              */
-            if (!hasChanged())
-                return;
 
             arrLocal = subscribers.toArray(new Subscriber[subscribers.size()]);
-            clearChanged();
         }
 
         for (int i = arrLocal.length-1; i>=0; i--)
@@ -62,27 +58,11 @@ public class Publisher<T> {
     }
 
 
-    public synchronized void deleteObservers() {
+    public synchronized void clearSubscribers() {
         subscribers.clear();
     }
 
-
-    protected synchronized void setChanged() {
-        changed = true;
-    }
-
-
-    protected synchronized void clearChanged() {
-        changed = false;
-    }
-
-
-    public synchronized boolean hasChanged() {
-        return changed;
-    }
-
-
-    public synchronized int countObservers() {
+    public synchronized int countSubscribers() {
         return subscribers.size();
     }
 }

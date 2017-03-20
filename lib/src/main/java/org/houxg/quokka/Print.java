@@ -4,7 +4,7 @@ package org.houxg.quokka;
 import android.view.MotionEvent;
 
 public class Print {
-    public String motionEvent(MotionEvent event) {
+    public static String motionEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
                 return "up";
