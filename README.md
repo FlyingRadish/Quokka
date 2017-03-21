@@ -1,7 +1,7 @@
 # Quokka
 A toolkit for Android developing
 
-## Usage
+## Dependency
 1. Add jitpack maven repo
 ```
 repositories {
@@ -15,3 +15,9 @@ dependencies {
   compile 'com.github.houxg:Quokka:0.1'
 }
 ```
+
+## Usage
+### CommandReceiver
+Send custom command to your app via adb
+### Print
+Print every int enum
