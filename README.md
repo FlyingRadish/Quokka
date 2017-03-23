@@ -17,7 +17,26 @@ dependencies {
 ```
 
 ## Usage
+### Init
+Init Quokka at the beginning of your app
+```
+Quokka.init(context);
+```
 ### CommandReceiver
 Send custom command to your app via adb
+#### add command listener
+```
+Quokka.subscribeCommand(new Subscriber<String>() {
+            @Override
+            public void onUpdate(Publisher<String> publisher, String data) {
+                messageTv.setText("command:" + data);
+            }
+        });
+```
+#### send command
+
+```
+adb shell am broadcast -a quokka.action.command --es command "your custom command"
+```
 ### Print
 Print every int enum
